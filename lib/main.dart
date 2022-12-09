@@ -21,7 +21,7 @@ class AppState extends StatelessWidget {
           create: ((context) => MoviesProvider()),
           //apenas se defina mi MoviesProvider se ejecute mi constructor
           lazy: false,
-        )
+        ),
       ],
       child: const MyApp(),
     );

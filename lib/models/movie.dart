@@ -2,7 +2,6 @@ import 'dart:convert';
 
 class Movie {
   Movie({
-    required this.adult,
     this.backdropPath,
     required this.genreIds,
     required this.id,
@@ -18,7 +17,6 @@ class Movie {
     required this.voteCount,
   });
   //propiedades
-  bool adult;
   String? backdropPath;
   List<int> genreIds;
   int id;
@@ -33,10 +31,26 @@ class Movie {
   double voteAverage;
   int voteCount;
 
+  //usamos para cuando tengamos dos pelicula que esten en nuestro card y nuestro slider
+  String? heroId;
+
+  get fullPosterImg {
+    if (posterPath != null) {
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
+    }
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  get fullBackdropPath {
+    if (backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500$backdropPath';
+    }
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
   factory Movie.fromMap(Map<String, dynamic> json) => Movie(
-        adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
